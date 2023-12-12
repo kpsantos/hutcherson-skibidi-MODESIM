@@ -20,11 +20,18 @@ class MoneyAgent(mesa.Agent):
         #agent variable inital
         self.wealth = 1
     
-    def step(self):
+    #def step(self):
         #agent's step
         #demo only yung unique id print 
-        print(f"I am Josh Hutcherson's agent. My name is: {str(self.unique_id)}.")
-        
+        #print(f"I am Josh Hutcherson's agent. My name is: {str(self.unique_id)}.")
+    def step(self):
+        # verify agent has some wealth
+        if self.wealth > 0:
+            other_agent = self.random.choice(self.model.schedule.agents)
+            if other_agent is not None:
+                other_agent.wealth += 1 #parang makati empty and makati tong dalawa
+                self.wealth -= 1
+                
 class MoneyModel(mesa.Model):
     #model with number of agents
     
